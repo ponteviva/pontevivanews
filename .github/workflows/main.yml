@@ -8,6 +8,9 @@ on:
 jobs:
   fetch-news:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,3 +22,11 @@ jobs:
       
       - name: Run script
         run: python fetch_news.py
+      
+      - name: Commit and push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "Ponte Viva Bot"
+          git add news_data.json
+          git commit -m "📰 Notícia de $(date +'%d/%m/%Y %H:%M')" || echo "Sem mudanças"
+          git push
