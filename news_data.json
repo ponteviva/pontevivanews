@@ -1,1 +1,16 @@
-{"published":[],"pending":[],"rejected":[]}
+{
+  "published": [],
+  "pending": [
+    {
+      "title": "Ministério da Saúde reforça reconhecimento de diplomas estrangeiros",
+      "summary": "Portaria facilita reconhecimento de enfermeiros estrangeiros. Brasil e Itália ampliam cooperação.",
+      "source_official": "Ministério da Saúde",
+      "country": "Brasil",
+      "link": "https://www.gov.br/saude/pt-br",
+      "image_url": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=400&fit=crop",
+      "published": "2026-08-28T16:10:58.732830",
+      "status": "pending_approval"
+    }
+  ],
+  "rejected": []
+}
