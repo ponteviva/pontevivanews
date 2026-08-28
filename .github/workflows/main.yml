@@ -1,0 +1,21 @@
+name: Buscar notícias diárias - Ponte Viva
+
+on:
+  schedule:
+    - cron: '09 09 * * *'
+  workflow_dispatch:
+
+jobs:
+  fetch-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Run script
+        run: python fetch_news.py
