@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 """
-Ponte Viva - Script de notícias simples e confiável
-Sem dependências externas - funciona 100%
+Ponte Viva - Script de notícias puro Python
+Sem dependências externas
 """
 
 import json
-import requests
 from datetime import datetime
 from random import choice
 
@@ -82,23 +81,18 @@ def main():
     print("🔄 Buscando notícia do dia...")
     
     try:
-        # Carrega dados existentes
         with open('news_data.json', 'r', encoding='utf-8') as f:
             data = json.load(f)
     except:
         data = {"published": [], "pending": [], "rejected": []}
     
-    # Busca notícia
     news = get_daily_news()
-    
-    # Salva como pendente
     data['pending'] = [news]
     
-    # Escreve arquivo
     with open('news_data.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
     
-    print(f"✅ Notícia do dia: {news['title'][:60]}...")
+    print(f"✅ Notícia: {news['title'][:50]}...")
 
 if __name__ == "__main__":
     main()
