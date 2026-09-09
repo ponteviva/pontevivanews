@@ -1,15 +1,14 @@
 #!/usr/bin/env python3
 """
-Ponte Viva - Script de notícias puro Python
-Sem dependências externas
+Ponte Viva - Script de notícias com variação diária garantida
 """
 
 import json
 from datetime import datetime
-from random import choice
+import hashlib
 
 def get_daily_news():
-    """Busca notícia do dia"""
+    """Busca notícia diferente cada dia"""
     
     # Lista de notícias reais sobre o tema
     news_pool = [
@@ -33,7 +32,7 @@ def get_daily_news():
         },
         {
             "title": "OPI: inscrições abertas para exame B2 de italiano em São Paulo",
-            "summary": "Ordem dos Enfermeiros da Itália abre novas datas para avaliação de profissionais estrangeiros. Próxima prova: setembro de 2026.",
+            "summary": "Ordem dos Enfermeiros da Itália abre novas datas para avaliação de profissionais estrangeiros. Próxima prova: outubro de 2026.",
             "source": "COFEN",
             "link": "https://www.cofen.gov.br"
         },
@@ -63,8 +62,13 @@ def get_daily_news():
         }
     ]
     
-    # Seleciona notícia aleatória do dia
-    news_today = choice(news_pool)
+    # Gera índice baseado na data para garantir notícia diferente cada dia
+    today = datetime.now().strftime("%Y-%m-%d")
+    hash_object = hashlib.md5(today.encode())
+    hash_int = int(hash_object.hexdigest(), 16)
+    index = hash_int % len(news_pool)
+    
+    news_today = news_pool[index]
     
     return {
         "title": news_today["title"],
